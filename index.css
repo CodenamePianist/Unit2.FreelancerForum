@@ -1,0 +1,16 @@
+body {
+    text-align: center;
+}
+
+h1, h2 {
+    font-size: 3rem;
+}
+
+p {
+    font-size: 2rem;
+}
+
+article {
+    display: flex;
+    justify-content: space-around;
+}
