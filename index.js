@@ -8,4 +8,25 @@ const freelancers = [
     { name: "Dr. Wire", price: 47, occupation: "teacher" },
     { name: "Prof. Goose", price: 72, occupation: "driver" },
 ];
-  
+
+function getIndex() {
+    return Math.floor(Math.random() * freelancers.length);
+}
+
+function render() {
+    const names = document.querySelector("#name");
+    const freelancer = freelancers[getIndex()].name;
+    const nameElement = document.createElement("li");
+    nameElement.textContent = freelancer;
+
+    names.appendChild(nameElement);
+
+    const occupation = document.querySelector("#occupation");
+    const job = freelancers[getIndex()].occupation;
+    const jobElement = document.createElement("li");
+    jobElement.textContent = job;
+
+    occupation.appendChild(jobElement);
+}
+
+setInterval(render, 5000);
