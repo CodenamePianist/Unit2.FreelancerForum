@@ -9,40 +9,48 @@ const freelancers = [
     { name: "Prof. Goose", price: 72, occupation: "driver" },
 ];
 
-const priceArray = [];
+const myInterval = setInterval(render, 5000);
+let peopleCount = 0;
+let totalPrice = 0;
 let averageStartingPrice = 0;
 function getIndex() {
     return Math.floor(Math.random() * freelancers.length);
 }
 
 function render() {
-    
+
+    const userIndex = getIndex();
 
     const names = document.querySelector("#name");
-    const freelancer = freelancers[getIndex()].name;
+    const freelancer = freelancers[userIndex].name;
     const nameElement = document.createElement("li");
     nameElement.textContent = freelancer;
 
     names.appendChild(nameElement);
 
     const occupation = document.querySelector("#occupation");
-    const job = freelancers[getIndex()].occupation;
+    const job = freelancers[userIndex].occupation;
     const jobElement = document.createElement("li");
     jobElement.textContent = job;
 
     occupation.appendChild(jobElement);
 
     const startingPrice = document.querySelector("#startingPrice");
-    const price = freelancers[getIndex()].price;
+    const price = freelancers[userIndex].price;
     const priceElement = document.createElement("li");
     priceElement.textContent = price;
-    priceArray.push(price);
 
     startingPrice.appendChild(priceElement)
 
-    averageStartingPrice = (averageStartingPrice + price) / priceArray.length;
+    peopleCount += 1;
+    totalPrice += price;
+    averageStartingPrice = totalPrice / peopleCount;
     const average = document.querySelector("span");
     average.textContent = Math.round(averageStartingPrice);
+
+    if (averageStartingPrice <= 35) {
+        clearInterval(myInterval);
+    }
+
 }
 
-setInterval(render, 5000);
