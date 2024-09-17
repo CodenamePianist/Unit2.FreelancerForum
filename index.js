@@ -9,11 +9,15 @@ const freelancers = [
     { name: "Prof. Goose", price: 72, occupation: "driver" },
 ];
 
+const priceArray = [];
+let averageStartingPrice = 0;
 function getIndex() {
     return Math.floor(Math.random() * freelancers.length);
 }
 
 function render() {
+    
+
     const names = document.querySelector("#name");
     const freelancer = freelancers[getIndex()].name;
     const nameElement = document.createElement("li");
@@ -27,6 +31,18 @@ function render() {
     jobElement.textContent = job;
 
     occupation.appendChild(jobElement);
+
+    const startingPrice = document.querySelector("#startingPrice");
+    const price = freelancers[getIndex()].price;
+    const priceElement = document.createElement("li");
+    priceElement.textContent = price;
+    priceArray.push(price);
+
+    startingPrice.appendChild(priceElement)
+
+    averageStartingPrice = (averageStartingPrice + price) / priceArray.length;
+    const average = document.querySelector("span");
+    average.textContent = Math.round(averageStartingPrice);
 }
 
 setInterval(render, 5000);
